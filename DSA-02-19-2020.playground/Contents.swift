@@ -204,8 +204,92 @@ numbersEndingIn5([1, 3, 5, 85, 15, 11, 90, 5, 56, 45, 12, 75])
 func getOddsSquaredSum(_ arr: [Int]) -> Int {
     var mutArr = arr
     mutArr = mutArr.filter { $0 % 2 == 1 }
+    print(mutArr)
     mutArr = mutArr.map { $0 * $0 }
+    print(mutArr)
     return mutArr.reduce(0, +)
 }
 
 getOddsSquaredSum([1, 2, 3, 4, 5, 6])
+
+
+// hey how are you you doing how how
+
+func removeVowels(_ str: String) -> String {
+    
+    var vowelLessArr = [Character]()
+    let vowels: [Character] = ["a","e","i","o","u","y"]
+//    var strArr = Array(str)
+    for char in str {
+        if !vowels.contains(char) {
+            vowelLessArr.append(char)
+        }
+    }
+    
+    
+    return String(vowelLessArr)
+}
+
+removeVowels("hey how are you you doing how how")
+
+func firstRepeatingWord(_ str: String) -> String {
+    
+    var puncless = str
+    var doubleWord = ""
+    for char in puncless {
+        if char.isPunctuation {
+            puncless.removeAll { $0 == char }
+        }
+    }
+    puncless = puncless.lowercased()
+    let punclessArr = puncless.components(separatedBy: " ")
+    
+    var wordSeen = [String]()
+    var wordSeenTwice = [String]()
+
+    for word in punclessArr {
+        if wordSeen.contains(word) {
+            wordSeenTwice.append(word)
+
+        }
+        wordSeen.append(word)
+    }
+    
+    for word in punclessArr {
+        if wordSeenTwice.contains(word) {
+            doubleWord = word
+            break
+        }
+    }
+    
+    print(wordSeenTwice)
+    
+    
+    return doubleWord
+}
+
+firstRepeatingWord("hey!! how? are you you doing how how")
+
+func shiftZeros(_ arr: [Int]) -> ([Int], Int) {
+    
+    var count = 0
+    var shiftZeroArr = [Int]()
+    
+    
+    for num in arr {
+        
+        if num != 0 {
+            count += 1
+            shiftZeroArr.insert(num, at: 0)
+        } else {
+                shiftZeroArr.insert(num, at: shiftZeroArr.count)
+
+        }
+    }
+    
+    return (shiftZeroArr, count)
+}
+
+shiftZeros([3,0,2,0,0,1,0,4])
+
+print(shiftZeros([3,0,2,0,0,1,0,4]))
